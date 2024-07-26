@@ -88,7 +88,7 @@ open class ModLoader(
                 add(RemapInjectables()) { file ->
                     this[BuiltinProperties.UNIQUE_IDENTIFIER] = projectGeneratedPackage(project, file)
                 }
-                this += AddRefmapName()
+                this += AddRefmapName { loom.addRefmapForForge }
                 this += TransformPlatformOnly()
 
                 this += TransformForgeAnnotations()

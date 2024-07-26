@@ -49,6 +49,7 @@ interface LoomInterface {
     val refmapName: String
     var generateSrgTiny: Boolean
     val legacyMixinApEnabled: Boolean get() = false
+    val addRefmapForForge: Boolean get() = true
 
     /**
      * Loom 0.11+ has to generate the runtime transformer properties file

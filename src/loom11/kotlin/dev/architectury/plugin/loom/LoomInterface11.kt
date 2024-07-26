@@ -52,6 +52,11 @@ class LoomInterface11(private val project: Project) : LoomInterface {
 
     override val legacyMixinApEnabled: Boolean
         get() = extension.mixin.useLegacyMixinAp.get()
+    
+    
+    override val addRefmapForForge: Boolean
+        // Awful hack to check if the version >= 1.20.5, we don't get any info of forge version in common
+        get() = !extension.minecraftProvider.versionInfo.isVersionOrNewer("2024-04-23T00:00:00+00:00")
 
     override val generateTransformerPropertiesInTask = true
 

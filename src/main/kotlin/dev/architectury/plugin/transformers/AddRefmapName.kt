@@ -10,9 +10,10 @@ import dev.architectury.transformer.transformers.base.edit.TransformerContext
 import dev.architectury.transformer.util.Logger
 import java.io.ByteArrayInputStream
 
-class AddRefmapName : AssetEditTransformer {
+data class AddRefmapName(val enabled: () -> Boolean = { true }) : AssetEditTransformer {
     val gson = GsonBuilder().setPrettyPrinting().create()
     override fun doEdit(context: TransformerContext, output: FileAccess) {
+        if (!enabled()) return
         val refmap = System.getProperty(BuiltinProperties.REFMAP_NAME) ?: return
         val mixins = mutableSetOf<String>()
         output.handle { path, bytes ->
